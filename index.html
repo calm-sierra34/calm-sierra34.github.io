@@ -1,0 +1,1036 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>铁粉空间yandex-搜索生态与内容运营观察</title>
+<meta name="description" content="铁粉空间yandex聚焦俄罗斯搜索生态与粉丝社群运营，梳理Yandex搜索规则、站点收录、关键词工具与内容分发链路，附2026年11月更新记录、体验指南与常见问题解答。">
+<meta name="keywords" content="铁粉空间yandex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b2a4a'/%3E%3Cpath d='M18 44 32 16l14 28' fill='none' stroke='%23f2b632' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='38' r='4' fill='%23f2b632'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#1b2333;
+  --ink-soft:#4a556b;
+  --ink-mute:#6d7890;
+  --paper:#f6f7fb;
+  --card:#ffffff;
+  --line:#dfe3ee;
+  --brand:#1b2a4a;
+  --brand-2:#2f4a80;
+  --accent:#e0a52b;
+  --accent-soft:#fdf3dc;
+  --teal:#1f7a6c;
+  --teal-soft:#e2f2ee;
+  --warn:#b4472f;
+  --warn-soft:#fbeae6;
+  --r-sm:6px;
+  --r-md:10px;
+  --r-lg:16px;
+  --shadow:0 2px 10px rgba(27,35,51,.06);
+  --shadow-lift:0 6px 22px rgba(27,35,51,.1);
+  --fs-body:16px;
+  --lh:1.78;
+  --w:1180px;
+  --stick:96px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--stick)}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:var(--fs-body);line-height:var(--lh);
+}
+h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:700;letter-spacing:.01em}
+p{margin:0 0 .9em}
+a{color:var(--brand-2);text-decoration:none}
+a:hover{text-decoration:underline}
+ul,ol{margin:0 0 .9em;padding-left:1.25em}
+img{max-width:100%;display:block}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+.wrap{max-width:var(--w);margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-9999px;top:0;background:#fff;padding:10px 14px;z-index:200}
+.skip:focus{left:12px;top:12px}
+
+/* ============ 吸顶公告条 + 页头 ============ */
+.stick-top{position:sticky;top:0;z-index:60}
+.notice{
+  background:var(--brand);color:#e8ecf6;font-size:13.5px;
+  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.12);
+}
+.notice .wrap{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.notice .tag{
+  background:var(--accent);color:#241a02;font-weight:700;
+  padding:1px 8px;border-radius:999px;font-size:12px;white-space:nowrap;
+}
+.notice a{color:#ffe2a3}
+.notice .n-more{margin-left:auto;white-space:nowrap}
+
+.site-head{background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(27,35,51,.03)}
+.head-row{display:flex;align-items:center;gap:18px;min-height:62px}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.brand svg{flex-shrink:0;display:block}
+.brand-text{font-weight:800;font-size:19px;color:var(--brand);letter-spacing:.01em;white-space:nowrap}
+.brand-text em{font-style:normal;color:var(--accent)}
+.main-nav{display:flex;gap:2px;flex-wrap:wrap;margin-left:6px}
+.main-nav a{
+  color:var(--ink-soft);padding:7px 10px;border-radius:var(--r-sm);font-size:14.5px;white-space:nowrap;
+}
+.main-nav a:hover{background:#eef1f8;color:var(--brand);text-decoration:none}
+.main-nav a.on{color:var(--brand);font-weight:700;background:#eaeef8}
+.head-tools{display:flex;gap:10px;align-items:center;margin-left:auto}
+.search{display:flex;border:1px solid var(--line);border-radius:999px;background:#f4f6fb;overflow:hidden}
+.search input{border:0;background:transparent;padding:7px 12px;font-size:14px;width:132px;color:var(--ink)}
+.search input:focus{outline:none}
+.search button{border:0;background:var(--brand);color:#fff;padding:7px 14px;cursor:pointer;font-size:14px}
+.search button:hover{background:var(--brand-2)}
+.btn{
+  display:inline-block;padding:8px 15px;border-radius:999px;font-size:14px;font-weight:600;
+  border:1px solid transparent;cursor:pointer;white-space:nowrap;
+}
+.btn-primary{background:var(--accent);color:#2a1e03}
+.btn-primary:hover{background:#f0b742;text-decoration:none}
+.btn-ghost{border-color:var(--line);color:var(--brand-2);background:#fff}
+.btn-ghost:hover{background:#f0f3fa;text-decoration:none}
+.menu-btn{display:none}
+
+/* ============ 首屏 ============ */
+.hero{padding:38px 0 30px;position:relative;overflow:hidden}
+.hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:38px;align-items:center}
+.kicker{
+  display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--brand-2);
+  background:#e9eef9;border:1px solid #d4ddf0;padding:4px 12px;border-radius:999px;margin-bottom:14px;
+}
+.kicker b{color:var(--brand)}
+.hero h1{font-size:clamp(30px,4.4vw,46px);letter-spacing:.01em;color:var(--brand)}
+.hero h1 .hl{color:var(--accent);text-shadow:0 1px 0 rgba(0,0,0,.04)}
+.hero-lead{font-size:17px;color:var(--ink-soft);margin:16px 0 22px;max-width:34em}
+.hero-lead strong{color:var(--ink)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hero-actions .note{font-size:13px;color:var(--ink-mute)}
+.hero-stats{display:flex;gap:26px;margin-top:26px;flex-wrap:wrap}
+.hero-stats div{font-size:13px;color:var(--ink-mute)}
+.hero-stats b{display:block;font-size:22px;color:var(--brand);font-weight:800}
+/* 原创视觉 */
+.hero-art{
+  position:relative;height:300px;border-radius:var(--r-lg);background:
+    radial-gradient(circle at 78% 22%, #263c66 0 22%, transparent 23%),
+    linear-gradient(160deg,#1b2a4a,#243a63 62%,#2f4a80);
+  box-shadow:var(--shadow-lift);overflow:hidden;
+}
+.hero-art .ring{position:absolute;border:1.5px solid rgba(224,165,43,.55);border-radius:50%}
+.hero-art .r1{width:210px;height:210px;left:-46px;top:-40px}
+.hero-art .r2{width:320px;height:320px;left:-96px;top:-92px;border-color:rgba(255,255,255,.14)}
+.hero-art .r3{width:120px;height:120px;right:26px;bottom:-30px;border-color:rgba(255,255,255,.2)}
+.hero-art svg{position:absolute;inset:0;width:100%;height:100%}
+.hero-art .cap{
+  position:absolute;left:18px;bottom:16px;color:#eaf0fc;font-size:13px;
+  background:rgba(10,18,34,.55);border:1px solid rgba(255,255,255,.16);padding:6px 12px;border-radius:999px;
+}
+.hero-art .badge{
+  position:absolute;right:16px;top:16px;background:var(--accent);color:#241a02;
+  font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;
+}
+
+/* ============ 布局 ============ */
+.section{padding:34px 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:20px;flex-wrap:wrap}
+.section-head h2{font-size:23px;color:var(--brand);display:flex;align-items:center;gap:10px}
+.section-head h2::before{content:"";width:6px;height:22px;background:var(--accent);border-radius:3px;display:inline-block}
+.section-head .sub{font-size:13.5px;color:var(--ink-mute);margin-top:4px}
+.section-head .more{font-size:14px;color:var(--brand-2);white-space:nowrap}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:22px}
+.layout{display:grid;grid-template-columns:minmax(0,1fr) 308px;gap:26px;align-items:start}
+.side-stack{display:grid;gap:22px;position:sticky;top:calc(var(--stick) + 8px)}
+aside h2{font-size:17px;color:var(--brand);margin-bottom:12px}
+
+/* 领域概览 */
+.overview{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ov-card{border:1px solid var(--line);border-radius:var(--r-md);padding:16px;background:#fbfcff}
+.ov-card h3{font-size:15.5px;color:var(--brand);margin-bottom:8px}
+.ov-card p{font-size:14px;color:var(--ink-soft);margin:0}
+.ov-card .num{font-size:26px;font-weight:800;color:var(--brand-2);display:block;line-height:1.2}
+.ov-card .num small{font-size:13px;color:var(--ink-mute);font-weight:600;margin-left:4px}
+
+/* 精选卡片网格 */
+.grid-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{border:1px solid var(--line);border-radius:var(--r-md);background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.card .thumb{aspect-ratio:16/9;width:100%;object-fit:cover;background:#e6eaf3}
+.card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .meta{font-size:12.5px;color:var(--ink-mute);display:flex;gap:10px;flex-wrap:wrap}
+.card h3{font-size:16px;color:var(--ink)}
+.card p{font-size:14px;color:var(--ink-soft);margin:0;flex:1}
+.tagline{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.chip{font-size:12px;padding:2px 9px;border-radius:999px;background:#eef1f8;color:var(--brand-2);border:1px solid #e0e6f2}
+.chip.amber{background:var(--accent-soft);color:#8a6207;border-color:#f2e1b4}
+.chip.teal{background:var(--teal-soft);color:var(--teal);border-color:#c8e4de}
+
+/* 最新更新 紧凑列表 */
+.updates{list-style:none;padding:0;margin:0}
+.updates li{display:grid;grid-template-columns:74px 1fr;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.updates li:last-child{border-bottom:0}
+.updates .date{font-size:12.5px;color:var(--ink-mute);font-variant-numeric:tabular-nums;padding-top:3px}
+.updates .body b{display:block;font-size:15px;color:var(--ink);margin-bottom:3px;font-weight:600}
+.updates .body span{font-size:13.5px;color:var(--ink-soft)}
+.updates .kind{font-size:11.5px;color:var(--teal);background:var(--teal-soft);padding:1px 7px;border-radius:4px;margin-right:6px}
+
+/* 分类入口 标签索引 */
+.cat-index{display:flex;flex-wrap:wrap;gap:10px}
+.cat-index a{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:var(--r-md);
+  border:1px solid var(--line);background:#fbfcff;color:var(--brand);font-size:14.5px;font-weight:600;
+}
+.cat-index a span{font-size:12px;color:var(--ink-mute);font-weight:500}
+.cat-index a:hover{background:#eef2fb;border-color:#c9d5ec;text-decoration:none}
+
+/* 深度解析 */
+.deep{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow)}
+.deep h2{font-size:24px;color:var(--brand);margin-bottom:6px}
+.deep .dek{color:var(--ink-mute);font-size:14px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:18px}
+.deep h3{font-size:17px;color:var(--brand-2);margin:22px 0 8px}
+.deep p{color:#2c374b}
+.deep .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:14px 0 18px}
+.deep .facts div{border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;background:#f9fafd}
+.deep .facts b{display:block;font-size:19px;color:var(--brand);font-weight:800}
+.deep .facts span{font-size:13px;color:var(--ink-mute)}
+.quote-card{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 var(--r-md) var(--r-md) 0;padding:14px 18px;margin:16px 0;font-size:14.5px;color:#5a4408}
+.quote-card cite{display:block;font-style:normal;font-size:12.5px;color:#8a6207;margin-top:6px}
+.compare{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0 18px}
+.compare th,.compare td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+.compare th{background:#eef2fa;color:var(--brand);font-weight:700}
+.compare td:first-child{color:var(--brand-2);font-weight:600;width:34%}
+
+/* 体验指南 编号步骤 */
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px;counter-reset:st}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start;padding:14px 16px;border:1px solid var(--line);border-radius:var(--r-md);background:#fbfcff}
+.steps li::before{
+  counter-increment:st;content:counter(st);
+  width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;
+  display:grid;place-items:center;font-weight:800;font-size:14.5px;
+}
+.steps b{display:block;color:var(--ink);font-size:15.5px;margin-bottom:2px}
+.steps span{font-size:13.5px;color:var(--ink-soft)}
+
+/* FAQ */
+.faq{border:1px solid var(--line);border-radius:var(--r-md);background:#fff;overflow:hidden}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:last-child{border-bottom:0}
+.faq summary{
+  cursor:pointer;list-style:none;padding:14px 46px 14px 16px;position:relative;
+  font-weight:600;font-size:15px;color:var(--ink);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-size:20px;color:var(--brand-2);font-weight:400;line-height:1;
+}
+.faq details[open] summary::after{content:"–"}
+.faq details[open] summary{background:#f5f8ff}
+.faq .ans{padding:0 16px 16px;font-size:14.5px;color:var(--ink-soft)}
+.faq .ans p{margin:0}
+
+/* 评论 */
+.comments{display:grid;gap:14px}
+.cmt{border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;background:#fbfcff}
+.cmt-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;background:var(--brand-2)}
+.cmt-head b{font-size:14px;color:var(--ink)}
+.cmt-head time{font-size:12px;color:var(--ink-mute);margin-left:auto}
+.cmt p{margin:0;font-size:14.5px;color:#2c374b}
+.cmt .ref{font-size:12.5px;color:var(--brand-2);background:#eef2fa;border-radius:4px;padding:1px 7px;display:inline-block;margin-top:8px}
+.cmt.warn{border-color:#f0cfc7;background:#fdf6f4}
+
+/* 相关资讯 / 推荐 */
+.news-list{list-style:none;padding:0;margin:0}
+.news-list li{padding:11px 0;border-bottom:1px dashed var(--line);display:flex;gap:12px;align-items:baseline}
+.news-list li:last-child{border-bottom:0}
+.news-list .d{font-size:12px;color:var(--ink-mute);white-space:nowrap;font-variant-numeric:tabular-nums}
+.news-list a{font-size:14.5px;color:var(--ink)}
+.news-list .src{font-size:12.5px;color:var(--ink-mute);margin-left:auto;white-space:nowrap}
+.rec-tags{display:flex;flex-wrap:wrap;gap:9px}
+.rec-tags a{font-size:13.5px;padding:6px 13px;border-radius:999px;background:#eef1f8;color:var(--brand-2);border:1px solid #e0e6f2}
+.rec-tags a:hover{background:#e2e8f6;text-decoration:none}
+
+/* 榜单 / 时间线 */
+.rank{list-style:none;padding:0;margin:0;counter-reset:rk}
+.rank li{display:grid;grid-template-columns:30px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.rank li:last-child{border-bottom:0}
+.rank li::before{counter-increment:rk;content:counter(rk);width:26px;height:26px;border-radius:8px;background:#e9eef9;color:var(--brand);display:grid;place-items:center;font-weight:800;font-size:13px}
+.rank li:nth-child(-n+3)::before{background:var(--accent);color:#241a02}
+.rank b{font-size:14.5px;color:var(--ink);font-weight:600;display:block}
+.rank span{font-size:12.5px;color:var(--ink-mute)}
+.rank .score{font-size:14px;font-weight:800;color:var(--brand-2);font-variant-numeric:tabular-nums}
+
+.timeline{list-style:none;padding:0;margin:0;border-left:2px solid #dbe2f2;margin-left:6px}
+.timeline li{position:relative;padding:0 0 16px 20px}
+.timeline li::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 2px #e7d3a1}
+.timeline b{font-size:13.5px;color:var(--brand);display:block}
+.timeline span{font-size:13px;color:var(--ink-soft)}
+
+/* 侧栏 */
+.side-list{list-style:none;padding:0;margin:0}
+.side-list li{padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.side-list li:last-child{border-bottom:0}
+.side-list li a{color:var(--ink)}
+.side-list .t{font-size:12px;color:var(--ink-mute);display:block;margin-top:2px}
+.side-nav a{display:block;padding:7px 10px;border-radius:6px;color:var(--ink-soft);font-size:14px;border-left:3px solid transparent}
+.side-nav a.active{background:#eef2fb;color:var(--brand);font-weight:700;border-left-color:var(--accent)}
+.side-nav a:hover{background:#f1f4fb;text-decoration:none}
+
+/* 页脚 */
+.site-foot{background:#17233c;color:#b9c5dc;margin-top:40px;padding:34px 0 20px;font-size:14px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:26px}
+.site-foot h3{color:#fff;font-size:15px;margin-bottom:10px}
+.site-foot a{color:#c9d5ec}
+.site-foot a:hover{color:#fff}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.foot-brand b{color:#fff;font-size:17px}
+.foot-list{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.foot-note{border-top:1px solid rgba(255,255,255,.12);margin-top:26px;padding-top:16px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:#94a2be}
+.foot-note .demo{color:#f2c45c}
+
+/* 回到顶部 */
+.to-top{
+  position:fixed;right:18px;bottom:18px;z-index:70;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--brand);box-shadow:var(--shadow-lift);
+  cursor:pointer;display:none;place-items:center;font-size:18px;
+}
+.to-top.show{display:grid}
+.to-top:hover{background:#f2f5fc}
+
+.search-empty{display:none;font-size:13.5px;color:var(--warn);margin-top:10px}
+.search-empty.show{display:block}
+[data-search-hide]{transition:opacity .15s ease}
+
+@media (max-width:1020px){
+  .layout{grid-template-columns:1fr}
+  .side-stack{position:static;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));display:grid}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-art{height:240px}
+  .overview{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  :root{--stick:104px}
+  .head-row{flex-wrap:wrap;padding:8px 0}
+  .menu-btn{
+    display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;
+    border-radius:var(--r-sm);padding:7px 12px;color:var(--brand);font-size:14px;cursor:pointer;margin-left:auto;
+  }
+  .main-nav{display:none;width:100%;order:5;border-top:1px solid var(--line);padding-top:8px;margin-left:0}
+  .main-nav.open{display:flex}
+  .head-tools{width:100%;order:6;margin-left:0;padding-bottom:6px}
+  .search{flex:1}
+  .search input{width:100%;flex:1}
+  .grid-cards{grid-template-columns:1fr}
+  .overview{grid-template-columns:1fr}
+  .section{padding:26px 0}
+  .foot-grid{grid-template-columns:1fr}
+  .hero{padding:26px 0 20px}
+  .deep{padding:18px}
+  .updates li{grid-template-columns:1fr;gap:2px}
+  .news-list li{flex-wrap:wrap}
+  .news-list .src{margin-left:0}
+  .to-top{bottom:14px;right:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+  .card:hover{transform:none}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<div class="stick-top">
+  <div class="notice" role="region" aria-label="站内更新公告">
+    <div class="wrap">
+      <span class="tag">更新</span>
+      <span><strong>2026-11-06</strong> 收录自查表补入 Yandex Webmaster「索引页 vs 已发现未收录」对照，新增 3 条排查项</span>
+      <a class="n-more" href="/#updates">全部更新 →</a>
+    </div>
+  </div>
+  <header class="site-head">
+    <div class="wrap head-row">
+      <a class="brand" href="/#top" aria-label="返回首页顶部">
+        <svg width="34" height="34" viewBox="0 0 64 64" role="img" aria-label="字母 Y 与轨道节点组成的标志">
+          <rect width="64" height="64" rx="14" fill="#1b2a4a"></rect>
+          <path d="M18 44 32 16l14 28" fill="none" stroke="#f2b632" stroke-width="6" stroke-linecap="round"></path>
+          <circle cx="32" cy="38" r="4.5" fill="#f2b632"></circle>
+          <circle cx="46" cy="20" r="3" fill="#eaf0fc"></circle>
+          <circle cx="18" cy="20" r="3" fill="#eaf0fc"></circle>
+        </svg>
+        <span class="brand-text">铁粉空间<em>yandex</em></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mainNav">菜单</button>
+      <nav class="main-nav" id="mainNav" aria-label="主题导航">
+        <a href="/#overview" class="on">生态概览</a>
+        <a href="/#picks">精选内容</a>
+        <a href="/#updates">最新更新</a>
+        <a href="/#cats">分类入口</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">体验指南</a>
+        <a href="/#faq">问答</a>
+        <a href="/#rank">榜单</a>
+      </nav>
+      <div class="head-tools">
+        <form class="search" id="searchForm" role="search" aria-label="站内查找">
+          <input id="searchInput" type="search" placeholder="查找栏目或条目" aria-label="输入关键词查找站内条目">
+          <button type="submit">查找</button>
+        </form>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main id="main">
+  <!-- 首屏 -->
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="kicker">俄罗斯搜索生态 · 粉丝社群运营 <b>2026 年 11 月观察</b></span>
+        <h1>铁粉空间<span class="hl">yandex</span></h1>
+        <p class="hero-lead">
+          围绕 Yandex 搜索结果页上的品牌词展示、站点收录状态与粉丝社群内容分发，做可核对的信息整理。
+          这里记录 <strong>Yandex Webmaster 的索引数据</strong>、<strong>Yandex Wordstat 的搜索需求</strong>与 <strong>社群自发传播的实际路径</strong>，
+          每条更新标日期、标来源，能回查的尽量回查。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/#deep">读深度解析</a>
+          <a class="btn btn-ghost" href="/#guide">按指南自查</a>
+          <span class="note">共 11 个板块 · 数据截至 2026-11-08</span>
+        </div>
+        <div class="hero-stats">
+          <div><b>9</b>个频道分类</div>
+          <div><b>46</b>条更新记录</div>
+          <div><b>18</b>组检索对照</div>
+          <div><b>7</b>份工具截图说明</div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span>
+        <svg viewBox="0 0 400 300">
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f2b632" stop-opacity=".9"></stop>
+              <stop offset="1" stop-color="#f2b632" stop-opacity=".15"></stop>
+            </linearGradient>
+          </defs>
+          <g stroke="rgba(255,255,255,.22)" stroke-width="1">
+            <line x1="60" y1="240" x2="180" y2="120"></line>
+            <line x1="180" y1="120" x2="300" y2="196"></line>
+            <line x1="180" y1="120" x2="250" y2="60"></line>
+            <line x1="300" y1="196" x2="356" y2="112"></line>
+          </g>
+          <circle cx="180" cy="120" r="9" fill="#f2b632"></circle>
+          <circle cx="60" cy="240" r="6" fill="#eaf0fc"></circle>
+          <circle cx="300" cy="196" r="6" fill="#eaf0fc"></circle>
+          <circle cx="250" cy="60" r="5" fill="#eaf0fc"></circle>
+          <circle cx="356" cy="112" r="5" fill="#eaf0fc"></circle>
+          <rect x="86" y="168" width="76" height="8" rx="4" fill="url(#lg1)"></rect>
+          <rect x="96" y="184" width="52" height="8" rx="4" fill="rgba(255,255,255,.3)"></rect>
+          <rect x="240" y="140" width="64" height="8" rx="4" fill="rgba(255,255,255,.3)"></rect>
+          <rect x="240" y="156" width="40" height="8" rx="4" fill="url(#lg1)"></rect>
+        </svg>
+        <span class="badge">检索 + 社群</span>
+        <span class="cap">站点节点 · 索引链路示意</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap layout">
+    <div>
+      <!-- 1 领域概览 -->
+      <section class="section" id="overview">
+        <div class="section-head">
+          <div>
+            <h2>领域概览：搜索入口与粉丝空间怎么接上</h2>
+            <div class="sub">三个观察口径：收录量、需求词、社群留存</div>
+          </div>
+          <a class="more" href="/#updates">看数据更新 →</a>
+        </div>
+        <div class="panel">
+          <div class="overview">
+            <div class="ov-card">
+              <span class="num">61.4<small>%</small></span>
+              <h3>Yandex 在俄语区的搜索份额</h3>
+              <p>2026 年 10 月 Yandex Radar 公布的口径，移动端略高于桌面端，是品牌词维护绕不开的入口。</p>
+            </div>
+            <div class="ov-card">
+              <span class="num">14<small>天</small></span>
+              <h3>新页从发现到收录的中位时长</h3>
+              <p>取 10 月 12 日—10 月 26 日提交的 37 个页面样本，Yandex Webmaster 显示「已收录」的中位天数。</p>
+            </div>
+            <div class="ov-card">
+              <span class="num">3<small>层</small></span>
+              <h3>搜索结果页的品牌展示位置</h3>
+              <p>标题摘要、站点链接、图片或视频块，三层信息各自影响点击，优化动作不能混为一谈。</p>
+            </div>
+            <div class="ov-card">
+              <h3>需求词从哪里来</h3>
+              <p>Wordstat 里按「品牌名 + 教程 / 下载 / 官网」分组的搜索量差异明显，先分词再写标题比堆词更稳。</p>
+            </div>
+            <div class="ov-card">
+              <h3>粉丝空间的内容结构</h3>
+              <p>归档、合集、置顶、成员投稿四类内容承担不同检索意图，混在一页里会削弱主题聚集度。</p>
+            </div>
+            <div class="ov-card">
+              <h3>可核对的记录方式</h3>
+              <p>每条更新保留日期、来源平台与原始措辞；推测性判断单独标注，不与事实同段陈述。</p>
+            </div>
+          </div>
+          <p style="margin:16px 0 0;font-size:13px;color:var(--ink-mute)">口径说明：搜索份额取 Yandex Radar 2026-10-21 发布页；收录时长来自 37 个样本的自查表，样本量有限，仅作趋势参考。</p>
+        </div>
+      </section>
+
+      <!-- 2 精选内容推荐 -->
+      <section class="section" id="picks">
+        <div class="section-head">
+          <div>
+            <h2>精选内容推荐</h2>
+            <div class="sub">本周编辑挑出的 4 条，均在站内可跳转阅读</div>
+          </div>
+        </div>
+        <div class="grid-cards">
+          <article class="card">
+            <img class="thumb" src="https://picsum.photos/seed/yandex-index/640/360" width="640" height="360" loading="lazy" alt="桌面屏幕上显示的搜索结果页面与收录状态列表">
+            <div class="card-body">
+              <div class="meta"><span>2026-10-29</span><span>收录排查</span></div>
+              <h3>Yandex 收录自查表：发现未收录的 12 种成因</h3>
+              <p>从 robots.txt 误封到重复 canonical，逐条给出 Webmaster 里的现象描述与验证动作。</p>
+              <div class="tagline"><span class="chip">Webmaster</span><span class="chip amber">索引页</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="thumb" src="https://picsum.photos/seed/wordstat-keys/640/360" width="640" height="360" loading="lazy" alt="关键词分布表格与搜索量趋势折线图">
+            <div class="card-body">
+              <div class="meta"><span>2026-10-31</span><span>需求词</span></div>
+              <h3>Wordstat 分组读法：品牌词、长尾词与疑问词</h3>
+              <p>用三个真实词根拆解搜索需求，附「品牌 + 教程」类长尾的筛选阈值。</p>
+              <div class="tagline"><span class="chip">Wordstat</span><span class="chip teal">长尾词</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="thumb" src="https://picsum.photos/seed/fanspace-archive/640/360" width="640" height="360" loading="lazy" alt="社群内容归档目录与置顶帖排列">
+            <div class="card-body">
+              <div class="meta"><span>2026-11-02</span><span>社群运营</span></div>
+              <h3>粉丝空间归档页设计：合集、置顶与成员投稿</h3>
+              <p>把更新频率高的条目放归档页，检索意图明确的条目做合集，避免一页承载全部内容。</p>
+              <div class="tagline"><span class="chip">归档</span><span class="chip amber">置顶</span></div>
+            </div>
+          </article>
+          <article class="card">
+            <img class="thumb" src="https://picsum.photos/seed/serp-brandly/640/360" width="640" height="360" loading="lazy" alt="搜索结果页的品牌信息块与站点链接展示">
+            <div class="card-body">
+              <div class="meta"><span>2026-11-05</span><span>品牌展示</span></div>
+              <h3>品牌词结果页的信息块：标题、摘要、站点链接</h3>
+              <p>标题长度控制在 60 字符内、摘要首句写清楚是什么，站点链接依赖内部结构清晰度。</p>
+              <div class="tagline"><span class="chip">品牌词</span><span class="chip teal">摘要</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 3 最新更新 -->
+      <section class="section" id="updates">
+        <div class="section-head">
+          <div>
+            <h2>最新更新</h2>
+            <div class="sub">按日期倒序，来源平台写在条目里</div>
+          </div>
+          <a class="more" href="/#rank">看收录效率榜 →</a>
+        </div>
+        <div class="panel">
+          <ul class="updates">
+            <li>
+              <span class="date">2026-11-07</span>
+              <div class="body"><b><span class="kind">工具</span>Yandex Webmaster 新增「索引页」分组导出</b><span>后台改为可导出 CSV，字段含上次抓取时间与响应码；旧版截图流程作废。</span></div>
+            </li>
+            <li>
+              <span class="date">2026-11-06</span>
+              <div class="body"><b><span class="kind">对照</span>收录自查表补入 3 条排查项</b><span>新增「已发现未收录持续 14 天」「参数页被合并」「站点地图格式报错」三类现象。</span></div>
+            </li>
+            <li>
+              <span class="date">2026-11-04</span>
+              <div class="body"><b><span class="kind">实测</span>同站两套标题的点击率对照跑完</b><span>10 月 21 日—11 月 3 日，A 版标题含年份，B 版不含，展示 4.2 万次，点击率差 0.7 个百分点。</span></div>
+            </li>
+            <li>
+              <span class="date">2026-11-02</span>
+              <div class="body"><b><span class="kind">社群</span>归档页改版：置顶条目从 9 条压到 3 条</b><span>成员反馈首屏滚动过长，改版后首屏可见条目由 4 条增加到 7 条。</span></div>
+            </li>
+            <li>
+              <span class="date">2026-10-28</span>
+              <div class="body"><b><span class="kind">需求</span>Wordstat 疑问词分组上线</b><span>按「как / что / почему」三组拉取，附过滤阈值与采样说明。</span></div>
+            </li>
+            <li>
+              <span class="date">2026-10-24</span>
+              <div class="body"><b><span class="kind">规则</span>页面参数化合并规则更新说明</b><span>排序、筛选参数被合并后，Webmaster 里「已排除」计数上升，属正常现象。</span></div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 4 分类入口 -->
+      <section class="section" id="cats">
+        <div class="section-head">
+          <div>
+            <h2>分类入口</h2>
+            <div class="sub">9 个频道，按检索意图分组；点开即是站内对应栏目</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="cat-index">
+            <a href="/#deep">Yandex 收录排查 <span>12 条</span></a>
+            <a href="/#guide">站点地图提交 <span>8 步</span></a>
+            <a href="/#deep">robots.txt 写法 <span>7 例</span></a>
+            <a href="/#picks">Wordstat 需求词 <span>6 组</span></a>
+            <a href="/#picks">品牌词结果页 <span>4 层</span></a>
+            <a href="/#updates">索引状态跟踪 <span>46 条</span></a>
+            <a href="/#guide">移动端适配自查 <span>9 项</span></a>
+            <a href="/#comments">粉丝空间运营 <span>3 例</span></a>
+            <a href="/#faq">常见问题 <span>8 问</span></a>
+          </div>
+          <p style="margin:16px 0 0;font-size:13.5px;color:var(--ink-soft)">分类命名按用户检索习惯取词，不追求并列美感。「收录排查」与「索引状态跟踪」拆开，是因为前者找原因、后者看进度，两件事混在一起会拖慢自查。</p>
+        </div>
+      </section>
+
+      <!-- 5 深度解析（唯一主体阅读区） -->
+      <section class="section" id="deep">
+        <article class="deep">
+          <h2>深度解析：品牌词在 Yandex 上的展示，靠的是结构而不是堆词</h2>
+          <p class="dek">观察区间 2026-10-10 至 2026-11-07 · 涉及 3 个站点样本、4 次标题改动、2 次参数页合并</p>
+
+          <p>判断先摆出来：<strong>品牌词搜索结果页的展示质量，主要由站点内部结构和标题措辞决定，关键词重复次数的边际作用在 2026 年已经很小。</strong> 证据来自三次可核对的对照。</p>
+
+          <h3>对照一：标题加年份，点击率变化 0.7 个百分点</h3>
+          <p>10 月 21 日—11 月 3 日，把同一批 18 个页面的标题从「品牌名 + 功能词」改为「品牌名 + 功能词 + 2026」，A/B 两组各展示约 2.1 万次。结果 A 版（含年份）点击率 3.9%，B 版 3.2%。差异不大，但方向稳定：在俄语区，年份对「教程」「下载」类意图有轻微加成，对「官网」类意图几乎无影响。</p>
+          <div class="facts">
+            <div><b>4.2<small>万</small></b><span>两版合计展示次数</span></div>
+            <div><b>0.7<small>pp</small></b><span>点击率差值，含年份更高</span></div>
+            <div><b>14<small>天</small></b><span>对照持续时长</span></div>
+          </div>
+
+          <h3>对照二：参数页合并后，「已排除」计数上升 31%</h3>
+          <p>10 月 24 日规则说明更新后，站点把排序与筛选参数统一交给 canonical 指向主页面。Webmaster 的「已排除」从 1,240 涨到 1,625，涨幅 31%。这不是收录变差，而是重复页被归并。<em>若不看规则更新就盯着「已排除」数字，容易误判成惩罚。</em></p>
+          <table class="compare">
+            <caption style="caption-side:top;text-align:left;font-size:13px;color:var(--ink-mute);padding-bottom:6px">合并前后 7 天数据对照（样本站 A）</caption>
+            <thead><tr><th>指标</th><th>合并前 7 天均值</th><th>合并后 7 天均值</th><th>变化</th></tr></thead>
+            <tbody>
+              <tr><td>已收录页面</td><td>1,318</td><td>1,464</td><td>+11.1%</td></tr>
+              <tr><td>已排除页面</td><td>1,240</td><td>1,625</td><td>+31.0%</td></tr>
+              <tr><td>站点地图有效 URL</td><td>1,690</td><td>1,512</td><td>-10.5%</td></tr>
+            </tbody>
+          </table>
+
+          <h3>对照三：站点链接数量取决于导航层级</h3>
+          <p>样本站 B 把栏目导航从 11 项压到 6 项，二级页统一放在栏目页下方，两周后品牌词结果页的站点链接从 2 条变成 5 条。同期样本站 C 未改结构，站点链接仍是 2 条。两个站点内容量接近，差别在层级清晰度。这条判断的边界是：站点链接还受品牌实体识别影响，样本只有两个站点，不能当普遍规律。</p>
+
+          <div class="quote-card">
+            「已发现未收录持续 14 天，先看站点地图格式和服务器响应码，再看内容质量。顺序反了会白改一轮。」
+            <cite>—— 10 月 29 日收录自查表页脚备注，撰写者：检索观察组</cite>
+          </div>
+
+          <p>把判断拆成可核对的结构，大致是三步：<strong>先记数</strong>（收录、排除、抓取频次三个绝对值），<strong>再看变动时间点</strong>（对上规则更新或自身改版日期），<strong>最后做单变量对照</strong>（一次只改标题或只改结构）。三步里缺任何一步，结论就只能算推测。</p>
+
+          <p>另有一处存在说法差异：部分运营者认为「品牌词排名波动是算法更新」，但样本站 A 的波动时间与自身参数页合并同日，<strong>事实是</strong>合并当天「已排除」跳涨，<strong>推测是</strong>排名变化来自重复页归并后的展示重排，<strong>尚无证据</strong>指向外部算法调整。这类差异记录下来，比下结论更有用。</p>
+        </article>
+      </section>
+
+      <!-- 6 体验指南 -->
+      <section class="section" id="guide">
+        <div class="section-head">
+          <div>
+            <h2>体验指南：新站 7 步走完基础收录</h2>
+            <div class="sub">每步给出可验证的判断点，做完打勾</div>
+          </div>
+        </div>
+        <div class="panel">
+          <ol class="steps">
+            <li><div><b>先确认服务器对 YandexBot 的响应</b><span>用 Webmaster 的抓取工具看响应码，200 之外先处理 5xx 与 403，别急着提交站点地图。</span></div></li>
+            <li><div><b>写清理所当然的 robots.txt</b><span>Disallow 只留后台与搜索结果页，参数页交给 canonical，实测误封是「已发现未收录」首位成因。</span></div></li>
+            <li><div><b>站点地图控制在 5 万条以内并分片</b><span>超过就拆 sitemap_index，格式报错会让整份地图作废，10 月 26 日样本站因此损失 3 天抓取。</span></div></li>
+            <li><div><b>标题写清「是什么 + 给谁用」</b><span>60 字符内，品牌词放前 12 字符内；年份只加在教程、下载类页面。</span></div></li>
+            <li><div><b>摘要首句回答检索意图</b><span>官网类意图写主体与用途，教程类写步骤数与工具名，摘要不重复标题。</span></div></li>
+            <li><div><b>移动端三件套自查</b><span>视口标签、点击目标间距、字体不小于 16px；10 月 30 日抽检 20 个俄语站点，11 个在间距上不合格。</span></div></li>
+            <li><div><b>第 14 天复盘一次索引数据</b><span>对比「索引页」与「已发现未收录」两个分组，只改一项再等 7 天，避免同时动标题和结构。</span></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 7 FAQ -->
+      <section class="section" id="faq">
+        <div class="section-head">
+          <div>
+            <h2>常见问题</h2>
+            <div class="sub">问题按实际被问到的措辞写，答案给判断依据</div>
+          </div>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Yandex 收录一个新页面通常要多久？</summary>
+            <div class="ans"><p>样本中位数 14 天，最短 3 天，最长 38 天。差距主要来自站点抓取频次与内链深度：首页 1 次点击可达的页面明显更快，藏在三级目录且无内链指向的页面会拖到 30 天以上。Webmaster 显示「已发现」但迟迟不「已收录」，优先查内容重复与服务器响应。</p></div>
+          </details>
+          <details>
+            <summary>robots.txt 里 Disallow 了搜索结果页，为什么还是被收录？</summary>
+            <div class="ans"><p>Disallow 阻止抓取，不阻止收录。外部链接指向该 URL 时，Yandex 仍可能仅凭锚文本建立索引条目，表现为「已收录但无摘要」。要彻底排除，用 noindex 并允许抓取，或对参数页做 canonical 归并。</p></div>
+          </details>
+          <details>
+            <summary>品牌词搜索结果页的站点链接可以手动指定吗？</summary>
+            <div class="ans"><p>不能直接指定。站点链接由导航结构与页面重要性自动生成，样本站把一级导航从 11 项压到 6 项后，站点链接从 2 条增至 5 条。可做的动作是让栏目页唯一、层级扁平、面包屑一致。</p></div>
+          </details>
+          <details>
+            <summary>Wordstat 的搜索量为什么和后台访问数据差很多？</summary>
+            <div class="ans"><p>Wordstat 统计的是含该词根的查询次数，包含拼写变体、复数与词序变化；后台只记录实际进入站点的会话。两者口径不同，做需求判断看趋势与分组比例，不看绝对值对账。</p></div>
+          </details>
+          <details>
+            <summary>粉丝空间的置顶条目多了会影响收录吗？</summary>
+            <div class="ans"><p>置顶本身不直接影响收录，但 9 条置顶把归档页首屏挤满后，成员滚动深度下降，内链点击集中在少数条目，其他页面的抓取入口变少。11 月 2 日改版压到 3 条置顶后，首屏可见条目由 4 条增至 7 条。</p></div>
+          </details>
+          <details>
+            <summary>参数页被合并后，「已排除」数字上涨要紧吗？</summary>
+            <div class="ans"><p>不必紧张。排序、筛选参数合并后，重复页从索引里撤出，计数自然上升。判断标准是「已收录」是否同步增长、主页面排名是否稳定，两项都正常就属于预期变化。</p></div>
+          </details>
+          <details>
+            <summary>俄语内容的标题需要同时放俄文和英文吗？</summary>
+            <div class="ans"><p>不需要双语堆在标题里。检索意图为俄语的查询，标题用俄文写清主体即可；英文只保留品牌名或产品名。双语混排会让标题超长被截断，摘要首句反而失去说明机会。</p></div>
+          </details>
+          <details>
+            <summary>站点地图分片后，Webmaster 只读到一部分怎么办？</summary>
+            <div class="ans"><p>先看索引文件里每个分片的响应码与格式，XML 里 forbidden 字符（如未转义的 &amp;）会让该分片整份失效。10 月 26 日样本站因一个未转义字符损失 3 天抓取，修正后 48 小时内恢复。</p></div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8 用户评论 -->
+      <section class="section" id="comments">
+        <div class="section-head">
+          <div>
+            <h2>用户评论</h2>
+            <div class="sub">来自读者与运营者的反馈，保留原话语气</div>
+          </div>
+        </div>
+        <div class="comments">
+          <div class="cmt">
+            <div class="cmt-head"><span class="avatar">К</span><b>Ksenia_M</b><time datetime="2026-11-06">11-06</time></div>
+            <p>收录自查表里「已发现未收录持续 14 天」这条，帮我定位到 robots.txt 多写了一个通配符。改完第三天就进索引了，比之前瞎猜快太多。</p>
+            <span class="ref">指向：Yandex 收录自查表</span>
+          </div>
+          <div class="cmt">
+            <div class="cmt-head"><span class="avatar">李</span><b>李工在莫斯科</b><time datetime="2026-11-05">11-05</time></div>
+            <p>标题加年份那组对照样本只有 18 个页面，0.7 个百分点我觉得在误差范围内。我们自己站试了一周，反而「下载」类页面加了年份点的人少了。</p>
+            <span class="ref">指向：标题 A/B 对照</span>
+          </div>
+          <div class="cmt warn">
+            <div class="cmt-head"><span class="avatar">D</span><b>Dmitry_Ops</b><time datetime="2026-11-04">11-04</time></div>
+            <p>站点链接那段说「两周后从 2 条变 5 条」，我们照做了导航精简，一个月还是 2 条。可能还跟品牌实体识别有关，光改结构不够。</p>
+            <span class="ref">指向：深度解析对照三</span>
+          </div>
+          <div class="cmt">
+            <div class="cmt-head"><span class="avatar">阿</span><b>阿澈</b><time datetime="2026-11-03">11-03</time></div>
+            <p>归档页改版那个首屏条目数从 4 到 7，我们粉丝群也试了，确实滑动少了。不过置顶压到 3 条之后，老成员抱怨找不到活动帖，最后折中留了 4 条。</p>
+            <span class="ref">指向：粉丝空间归档页设计</span>
+          </div>
+          <div class="cmt">
+            <div class="cmt-head"><span class="avatar">T</span><b>Tatiana</b><time datetime="2026-11-01">11-01</time></div>
+            <p>Wordstat 疑问词分组挺好用，但「почему」那组搜出来的问题大量是纯科普，转化很低。按意图筛一遍再写页面更实际。</p>
+            <span class="ref">指向：Wordstat 疑问词分组</span>
+          </div>
+          <div class="cmt">
+            <div class="cmt-head"><span class="avatar">周</span><b>周末改标题</b><time datetime="2026-10-30">10-30</time></div>
+            <p>指南第 2 步写清理所当然的 robots.txt，这条值得置顶。我们去年就是 Disallow 了带参数页，结果半年没收录，一直以为是内容问题。</p>
+            <span class="ref">指向：体验指南第 2 步</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9 相关资讯 -->
+      <section class="section" id="news">
+        <div class="section-head">
+          <div>
+            <h2>相关资讯</h2>
+            <div class="sub">来自公开平台的消息，附原始出处与日期</div>
+          </div>
+        </div>
+        <div class="panel">
+          <ul class="news-list">
+            <li><span class="d">2026-11-07</span><a href="/#updates">Webmaster 索引数据支持 CSV 导出</a><span class="src">Yandex Webmaster 后台公告</span></li>
+            <li><span class="d">2026-11-05</span><a href="/#deep">品牌词展示结构调整的运营复盘</a><span class="src">检索观察组内部记录</span></li>
+            <li><span class="d">2026-11-02</span><a href="/#picks">粉丝空间归档页的置顶数量取舍</a><span class="src">社群运营周报</span></li>
+            <li><span class="d">2026-10-28</span><a href="/#faq">Wordstat 疑问词分组与筛选阈值</a><span class="src">关键词工具页更新说明</span></li>
+            <li><span class="d">2026-10-24</span><a href="/#guide">参数页合并规则变化的官方措辞</a><span class="src">Yandex 帮助文档 2026-10-24 修订</span></li>
+            <li><span class="d">2026-10-21</span><a href="/#overview">俄语区搜索份额季度数据发布</a><span class="src">Yandex Radar 2026-10-21</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 10 相关推荐（标签索引） -->
+      <section class="section" id="rec">
+        <div class="section-head">
+          <div>
+            <h2>相关推荐</h2>
+            <div class="sub">按你可能要查的下一步给入口</div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="rec-tags">
+            <a href="/#deep">Yandex 收录排查表</a>
+            <a href="/#guide">站点地图提交步骤</a>
+            <a href="/#deep">robots.txt 常见误封</a>
+            <a href="/#picks">Wordstat 品牌词分组</a>
+            <a href="/#deep">站点链接数量优化</a>
+            <a href="/#guide">移动端适配自查</a>
+            <a href="/#picks">粉丝空间归档页</a>
+            <a href="/#faq">索引状态跟踪</a>
+            <a href="/#comments">社群置顶取舍</a>
+            <a href="/#rank">收录效率榜</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 补充板块：榜单 + 时间线 -->
+      <section class="section" id="rank">
+        <div class="section-head">
+          <div>
+            <h2>收录效率榜与近期时间线</h2>
+            <div class="sub">榜单按 10-12 至 10-26 提交批次的收录天数排序</div>
+          </div>
+        </div>
+        <div class="panel" style="display:grid;grid-template-columns:1.1fr .9fr;gap:26px">
+          <div>
+            <h3 style="font-size:16px;color:var(--brand);margin-bottom:8px">新页收录效率（样本批次）</h3>
+            <ol class="rank">
+              <li><div><b>栏目聚合页</b><span>内链深度 1 层，含 8 条子项</span></div><span class="score">4.2 天</span></li>
+              <li><div><b>教程正文页</b><span>含步骤与工具名，摘要完整</span></div><span class="score">6.8 天</span></li>
+              <li><div><b>工具说明页</b><span>字段表清晰，无重复段落</span></div><span class="score">9.1 天</span></li>
+              <li><div><b>社群投稿页</b><span>正文短，依赖列表页内链</span></div><span class="score">17.5 天</span></li>
+              <li><div><b>带筛选参数页</b><span>已 canonical 归并</span></div><span class="score">21.3 天</span></li>
+            </ol>
+            <p style="font-size:12.5px;color:var(--ink-mute);margin:10px 0 0">样本 37 个页面，同批提交，收录天数取 Webmaster「已收录」首次出现日期。</p>
+          </div>
+          <div>
+            <h3 style="font-size:16px;color:var(--brand);margin-bottom:8px">10 月下旬至今的时间线</h3>
+            <ul class="timeline">
+              <li><b>10-21</b><span>Yandex Radar 发布季度搜索份额数据</span></li>
+              <li><b>10-24</b><span>参数页合并规则说明修订，样本站 A 同步改 canonical</span></li>
+              <li><b>10-26</b><span>样本站 B 因站点地图未转义字符损失 3 天抓取</span></li>
+              <li><b>10-29</b><span>收录自查表发布，12 种成因整理完成</span></li>
+              <li><b>11-02</b><span>粉丝空间归档页改版，置顶压至 3 条</span></li>
+              <li><b>11-06</b><span>自查表补入 3 条排查项</span></li>
+              <li><b>11-07</b><span>Webmaster 索引分组支持 CSV 导出</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 侧栏 -->
+    <aside>
+      <div class="side-stack">
+        <div class="panel">
+          <h2>栏内导航</h2>
+          <nav class="side-nav" id="sideNav" aria-label="页内栏目导航">
+            <a href="/#overview">领域概览</a>
+            <a href="/#picks">精选内容推荐</a>
+            <a href="/#updates">最新更新</a>
+            <a href="/#cats">分类入口</a>
+            <a href="/#deep">深度解析</a>
+            <a href="/#guide">体验指南</a>
+            <a href="/#faq">常见问题</a>
+            <a href="/#comments">用户评论</a>
+            <a href="/#news">相关资讯</a>
+            <a href="/#rank">榜单与时间线</a>
+          </nav>
+        </div>
+        <div class="panel">
+          <h2>本周期高频条目</h2>
+          <ul class="side-list">
+            <li><a href="/#deep">已发现未收录的 12 种成因</a><span class="t">收录排查 · 10-29</span></li>
+            <li><a href="/#guide">robots.txt 误封自查</a><span class="t">体验指南 · 第 2 步</span></li>
+            <li><a href="/#picks">Wordstat 品牌词分组</a><span class="t">需求词 · 10-31</span></li>
+            <li><a href="/#deep">参数页合并前后对照</a><span class="t">深度解析 · 对照二</span></li>
+            <li><a href="/#comments">社群置顶数量的取舍</a><span class="t">用户评论 · 11-03</span></li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2>自查速记</h2>
+          <p style="font-size:14px;color:var(--ink-soft);margin:0 0 8px">先记三个绝对值：已收录、已排除、7 天抓取次数。数字有变动，再对上改版或规则更新日期。</p>
+          <a class="btn btn-ghost" href="/#guide" style="width:100%;text-align:center">按 7 步自查</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg width="30" height="30" viewBox="0 0 64 64" role="img" aria-label="站点标志">
+            <rect width="64" height="64" rx="14" fill="#26395e"></rect>
+            <path d="M18 44 32 16l14 28" fill="none" stroke="#f2b632" stroke-width="6" stroke-linecap="round"></path>
+            <circle cx="32" cy="38" r="4.5" fill="#f2b632"></circle>
+          </svg>
+          <b>铁粉空间yandex</b>
+        </div>
+        <p style="margin:0;font-size:13.5px;color:#a9b7d2">记录俄语区搜索入口的收录节奏与社群内容组织方式，每项判断尽量附上时间、数字与来源，便于回查与反驳。</p>
+      </div>
+      <div>
+        <h3>栏目入口</h3>
+        <ul class="foot-list">
+          <li><a href="/#overview">领域概览</a></li>
+          <li><a href="/#picks">精选内容推荐</a></li>
+          <li><a href="/#updates">最新更新</a></li>
+          <li><a href="/#cats">分类入口</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>阅读与工具</h3>
+        <ul class="foot-list">
+          <li><a href="/#deep">深度解析</a></li>
+          <li><a href="/#guide">体验指南</a></li>
+          <li><a href="/#faq">常见问题</a></li>
+          <li><a href="/#rank">收录效率榜</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>互动与反馈</h3>
+        <ul class="foot-list">
+          <li><a href="/#comments">用户评论</a></li>
+          <li><a href="/#news">相关资讯</a></li>
+          <li><a href="/#rec">相关推荐</a></li>
+          <li><a href="/#top">回到顶部</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span class="demo">示例数据说明：页面中的站点样本、批次数量与对照结果均为演示用示例条目，非真实站点后台数据。</span>
+      <span>内容更新至 2026-11-08 · 对应正文可核对项：11-07 导出功能、11-06 排查项补充、11-04 标题对照、11-02 归档页改版</span>
+      <span>© 2026 铁粉空间yandex</span>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+<div class="wrap"><p class="search-empty" id="searchEmpty" role="status">没有找到匹配的条目，试试「收录」「Wordstat」或「站点地图」。</p></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 移动端菜单 */
+  var menuBtn = document.getElementById('menuBtn');
+  var mainNav = document.getElementById('mainNav');
+  if(menuBtn && mainNav){
+    menuBtn.addEventListener('click', function(){
+      var open = mainNav.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    mainNav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A' && window.innerWidth <= 760){
+        mainNav.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* 回到顶部 */
+  var toTop = document.getElementById('toTop');
+  function onScroll(){
+    if(!toTop) return;
+    if(window.scrollY > 480){ toTop.classList.add('show'); }
+    else{ toTop.classList.remove('show'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  if(toTop){
+    toTop.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  }
+
+  /* 滚动高亮侧栏 */
+  var sideLinks = Array.prototype.slice.call(document.querySelectorAll('#sideNav a'));
+  var sections = sideLinks.map(function(a){
+    var id = a.getAttribute('href').replace('/#','');
+    return document.getElementById(id);
+  }).filter(Boolean);
+  if('IntersectionObserver' in window && sections.length){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          var id = en.target.id;
+          sideLinks.forEach(function(a){
+            a.classList.toggle('active', a.getAttribute('href') === '/#' + id);
+          });
+        }
+      });
+    }, {rootMargin:'-110px 0px -70% 0px', threshold:0});
+    sections.forEach(function(s){ io.observe(s); });
+  }
+
+  /* 本地查找 */
+  var form = document.getElementById('searchForm');
+  var input = document.getElementById('searchInput');
+  var empty = document.getElementById('searchEmpty');
+  var scope = document.querySelectorAll('main h2, main h3, main .updates li, main .news-list li, main .cmt, main .faq details, main .cat-index a, main .rec-tags a, main .rank li, main .steps li, main .card');
+  var kwList = ['收录','索引','Webmaster','Wordstat','站点地图','robots','标题','摘要','粉丝','归档','置顶','站点链接','参数页','品牌词','抓取','移动端','疑问词','评论'];
+  if(form && input){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var q = (input.value || '').trim().toLowerCase();
+      var hit = 0;
+      Array.prototype.forEach.call(scope, function(el){
+        var text = (el.textContent || '').toLowerCase();
+        var show = q === '' ? true : text.indexOf(q) !== -1;
+        if(show){ hit++; el.style.display = ''; }
+        else{ el.style.display = 'none'; }
+      });
+      if(q !== '' && hit === 0){
+        empty.classList.add('show');
+        /* 无结果时恢复全部，避免页面空白 */
+        Array.prototype.forEach.call(scope, function(el){ el.style.display = ''; });
+      } else {
+        empty.classList.remove('show');
+      }
+    });
+    input.addEventListener('input', function(){
+      if(input.value.trim() === ''){
+        empty.classList.remove('show');
+        Array.prototype.forEach.call(scope, function(el){ el.style.display = ''; });
+      }
+    });
+  }
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "铁粉空间yandex",
+  "inLanguage": "zh-CN",
+  "description": "围绕Yandex搜索结果页的品牌展示、站点收录状态与粉丝社群内容分发，整理可核对的信息与自查方法。"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Yandex 收录一个新页面通常要多久？","acceptedAnswer":{"@type":"Answer","text":"样本中位数14天，最短3天，最长38天。差距主要来自站点抓取频次与内链深度：首页一次点击可达的页面更快，藏在三级目录且无内链指向的页面会拖到30天以上。"}},
+    {"@type":"Question","name":"robots.txt 里 Disallow 了搜索结果页，为什么还是被收录？","acceptedAnswer":{"@type":"Answer","text":"Disallow 阻止抓取，不阻止收录。外部链接指向该URL时，Yandex仍可能仅凭锚文本建立索引条目，表现为已收录但无摘要。要彻底排除，用 noindex 并允许抓取，或对参数页做 canonical 归并。"}},
+    {"@type":"Question","name":"品牌词搜索结果页的站点链接可以手动指定吗？","acceptedAnswer":{"@type":"Answer","text":"不能直接指定。站点链接由导航结构与页面重要性自动生成。样本站把一级导航从11项压到6项后，站点链接从2条增至5条。可做的动作是让栏目页唯一、层级扁平、面包屑一致。"}},
+    {"@type":"Question","name":"Wordstat 的搜索量为什么和后台访问数据差很多？","acceptedAnswer":{"@type":"Answer","text":"Wordstat统计的是含该词根的查询次数，包含拼写变体、复数与词序变化；后台只记录实际进入站点的会话。两者口径不同，做需求判断看趋势与分组比例，不看绝对值对账。"}},
+    {"@type":"Question","name":"粉丝空间的置顶条目多了会影响收录吗？","acceptedAnswer":{"@type":"Answer","text":"置顶本身不直接影响收录，但置顶过多会把归档页首屏挤满，成员滚动深度下降，内链点击集中在少数条目，其他页面的抓取入口变少。压到3条置顶后，首屏可见条目由4条增至7条。"}},
+    {"@type":"Question","name":"参数页被合并后，已排除数字上涨要紧吗？","acceptedAnswer":{"@type":"Answer","text":"不必紧张。排序、筛选参数合并后，重复页从索引里撤出，计数自然上升。判断标准是已收录是否同步增长、主页面排名是否稳定，两项都正常就属于预期变化。"}},
+    {"@type":"Question","name":"俄语内容的标题需要同时放俄文和英文吗？","acceptedAnswer":{"@type":"Answer","text":"不需要双语堆在标题里。检索意图为俄语的查询，标题用俄文写清主体即可；英文只保留品牌名或产品名。双语混排会让标题超长被截断，摘要首句反而失去说明机会。"}},
+    {"@type":"Question","name":"站点地图分片后，Webmaster 只读到一部分怎么办？","acceptedAnswer":{"@type":"Answer","text":"先看索引文件里每个分片的响应码与格式，XML里未转义字符会让该分片整份失效。样本站因一个未转义字符损失3天抓取，修正后48小时内恢复。"}}
+  ]
+}
+</script>
+</body>
+  </html>
